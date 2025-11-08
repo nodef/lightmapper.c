@@ -1,5 +1,5 @@
-﻿# Lightmapper
-lightmapper.h is a C/C++ single-file library for lightmap baking by using your existing OpenGL renderer.
+# Lightmapper
+lightmapper.h is a C/C++ single-file library for lightmap baking by using your existing OpenGL renderer, by [ands](https://github.com/ands).
 
 To paste the implementation into your project, insert the following lines:
 ```
@@ -13,12 +13,24 @@ Any light shapes and emissive surfaces are supported as long as you draw them wi
 
 You may want to use [thekla_atlas](https://github.com/Thekla/thekla_atlas) / [xatlas](https://github.com/jpcy/xatlas) or [uvatlas](https://github.com/microsoft/UVAtlas) to prepare your geometry for lightmapping.
 
+# Installation
+
+Run:
+```bash
+$ npm i lightmapper.c
+```
+
+And then include `lightmapper.h` as follows:
+```c
+#include "node_modules/lightmapper.c/lightmapper.h"
+```
+
 # Example application
 ![Lightmapper Example Screenshot](https://github.com/ands/lightmapper/raw/master/example_images/example.png)
 The provided [example application](https://github.com/ands/lightmapper/blob/master/example/example.c) should build on Windows/Linux/MacOSX.
 
 Linux dependencies for glfw: xorg-dev libgl1-mesa-dev
-```
+```bash
 git clone --recursive https://github.com/ands/lightmapper.git
 cd lightmapper/example
 cmake .
@@ -27,7 +39,7 @@ make
 ```
 
 # Example usage
-```
+```c
 lm_context *ctx = lmCreate(
 	64,               // hemicube rendering resolution/quality
 	0.001f, 100.0f,   // zNear, zFar
@@ -48,13 +60,13 @@ for (int b = 0; b < bounces; b++)
 	{
 		memset(mesh[i].lightmap, 0, sizeof(float) * mesh[i].lightmapWidth * mesh[i].lightmapHeight * 3); // clear lightmap to black
 		lmSetTargetLightmap(ctx, mesh[i].lightmap, mesh[i].lightmapWidth, mesh[i].lightmapHeight, 3);
-		
+
 		lmSetGeometry(ctx, mesh[i].modelMatrix,
 			LM_FLOAT, (uint8_t*)mesh[i].vertices + positionOffset, vertexSize,
 			LM_NONE , NULL, 0, // optional vertex normals for smooth surfaces
 			LM_FLOAT, (uint8_t*)mesh[i].vertices + lightmapUVOffset, vertexSize,
 			mesh[i].indexCount, LM_UNSIGNED_SHORT, mesh[i].indices);
-	
+
 		int vp[4];
 		mat4 view, proj;
 		while (lmBegin(&ctx, vp, &view[0][0], &proj[0][0]))
@@ -128,3 +140,10 @@ The following video shows several lighting effects. The static/stationary and in
 - To Apoorva Joshi for trying to find a graphics driver performance anomaly.
 - To Teh_Bucket for this public domain gazebo model on OpenGameArt.org.
 - To everybody else that I forgot :)
+
+<br>
+<br>
+
+
+[![ORG](https://img.shields.io/badge/org-nodef-green?logo=Org)](https://nodef.github.io)
+![](https://ga-beacon.deno.dev/G-RC63DPBH3P:SH3Eq-NoQ9mwgYeHWxu7cw/github.com/nodef/lightmapper.c)
