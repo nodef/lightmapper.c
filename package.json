@@ -1,0 +1,24 @@
+{
+  "name": "lightmapper.c",
+  "version": "1.2022.1",
+  "description": "A C/C++ single-file library for drop-in lightmap baking. Just use your existing OpenGL renderer to bounce light; ands (2016).",
+  "keywords": [
+    "c",
+    "library",
+    "lightmap",
+    "baking",
+    "opengl",
+    "graphics",
+    "renderer"
+  ],
+  "homepage": "https://github.com/nodef/lightmapper.c#readme",
+  "bugs": {
+    "url": "https://github.com/nodef/lightmapper.c/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodef/lightmapper.c.git"
+  },
+  "license": "CC0-1.0",
+  "main": "lightmapper.h"
+}
